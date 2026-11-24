@@ -1,255 +1,584 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <title>Zoheb Ahmed ✌</title>
-    <script src="/script.js"></script>
-  </head>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zoheb Ahmed · The Portfolio Depot</title>
+<meta name="description" content="Zoheb Ahmed, MBA marketing graduate. A pile of shipping containers, each holding a piece of the portfolio.">
+<!-- Fontshare (loads when self-hosted; blocked on hosts that only allow Google Fonts) -->
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;700;800&family=Fredoka:wght@700&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* ---------- registered properties (animatable lengths/angles) ---------- */
+@property --x   { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --y   { syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --w   { syntax: '<length>'; inherits: true;  initial-value: 240px; }
+@property --h   { syntax: '<length>'; inherits: true;  initial-value: 103px; }
+@property --d   { syntax: '<length>'; inherits: true;  initial-value: 96px; }
+@property --rx  { syntax: '<angle>';  inherits: false; initial-value: 0deg; }
+@property --ry  { syntax: '<angle>';  inherits: false; initial-value: 0deg; }
+@property --rz  { syntax: '<angle>';  inherits: false; initial-value: 0deg; }
+@property --lift{ syntax: '<length>'; inherits: false; initial-value: 0px; }
+@property --cx  { syntax: '<length>'; inherits: true;  initial-value: 0px; }
+@property --hy  { syntax: '<length>'; inherits: true;  initial-value: 110px; }
+@property --span{ syntax: '<length>'; inherits: true;  initial-value: 250px; }
+@property --fl  { syntax: '<length>'; inherits: true;  initial-value: 56px; }
 
-  <body>
-    <div class="navbar" id="mainpage">
-      <a style="text-decoration: none" href="#mainpage">
-        <h2>Zoheb Ahmed</h2>
-      </a>
-      <ul>
-        <li><a href="#mainpage">Home</a></li>
-        <li><a href="#myskills">Skills</a></li>
-        <li><a href="#contacts">Contact</a></li>
-        <li><a href="#Aboutme">About</a></li>
-      </ul>
-      <a href="mailto:zohebahmed893@gmail.com">
-        <button class="hire-btn">Contact Me</button>
-      </a>
+:root{
+  --ease: cubic-bezier(.55,0,.25,1);
+  --spring: cubic-bezier(.34,1.56,.64,1);
+  --display: 'Clash Display','Bricolage Grotesque',system-ui,sans-serif;
+  --body: 'Cabinet Grotesk','Figtree',system-ui,sans-serif;
+  --serif: 'Instrument Serif',Georgia,serif;
+  --yellow:#ffd23f;
+  --pad:48px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:var(--body);
+  color:#fff;
+  overflow-x:hidden;
+  background:linear-gradient(180deg,#0f74e0 0%,#1f93f2 55%,#46b8ff 100%) fixed;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit;color:inherit}
+
+/* ---------- nav ---------- */
+.nav{
+  height:72px; padding:0 var(--pad);
+  display:grid; grid-template-columns:1fr auto 1fr; align-items:center;
+}
+.logo{display:block;width:112px;line-height:0;text-decoration:none}
+.logo svg{width:100%;height:auto;filter:invert(1);mix-blend-mode:screen;display:block}
+.links{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.links button{
+  background:none;border:0;cursor:pointer;
+  font:700 15px/1 var(--body); color:#e6f3ff;
+  padding:10px 14px;border-radius:999px;
+  transition:background .2s,color .2s;
+}
+.links button:hover{background:rgba(255,255,255,.14);color:#fff}
+.links button[aria-current="true"]{background:rgba(255,255,255,.2);color:#fff}
+.links button:focus-visible,.talk:focus-visible,.logo:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.talk{
+  justify-self:end;white-space:nowrap;
+  font:600 17px/1 var(--display); color:#fff; text-decoration:none;
+  padding:11px 18px;border-radius:999px;border:1.5px solid rgba(255,255,255,.55);
+  transition:background .2s,color .2s;
+}
+.talk:hover{background:#fff;color:#0f74e0}
+
+/* ---------- stage ---------- */
+.stage{
+  position:relative; overflow:hidden;
+  height:calc(100vh - 72px); height:calc(100svh - 72px); min-height:560px;
+}
+.stage::before{ /* blueprint grid */
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.backword{
+  position:absolute;left:0;right:0;top:58%;transform:translateY(-50%);
+  margin:0;text-align:center;pointer-events:none;user-select:none;
+  font:700 clamp(90px,19vw,330px)/1 var(--display);letter-spacing:-.04em;
+  color:#fff;white-space:nowrap;z-index:0;
+}
+.depot{
+  position:absolute;left:var(--pad);top:52px;z-index:3;margin:0;
+  font:700 11px/1 var(--body);letter-spacing:.22em;color:#d7ecff;
+}
+.depot b{color:var(--yellow);font-weight:800}
+.floor{ /* soft shadow under the heap */
+  position:absolute;left:5%;right:5%;bottom:-8%;height:38%;pointer-events:none;z-index:1;
+  background:radial-gradient(ellipse at 50% 60%,rgba(8,50,130,.38),transparent 70%);
+}
+.hint{
+  position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:900;
+  margin:0;padding:9px 16px;border-radius:999px;
+  font:800 11px/1 var(--body);letter-spacing:.2em;white-space:nowrap;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.4);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  pointer-events:none;
+}
+
+/* ---------- rail + claw ---------- */
+.claw{position:absolute;inset:0;pointer-events:none;z-index:800}
+.rail{
+  position:absolute;left:0;right:0;top:18px;height:16px;border-radius:8px;
+  background:linear-gradient(180deg,#ffffff 0%,#eef3f8 45%,#c9d3de 100%);
+  box-shadow:0 6px 14px rgba(6,60,150,.35),inset 0 1px 0 #fff;
+}
+.rail::after{
+  content:"";position:absolute;left:10px;right:10px;top:7px;height:2px;
+  background:repeating-linear-gradient(90deg,rgba(90,110,140,.28) 0 10px,transparent 10px 18px);
+}
+.trolley{
+  position:absolute;left:0;top:0;width:0;height:0;
+  transform:translateX(var(--cx));
+  transition:--cx var(--dur,0ms) var(--ease),--hy var(--dur,0ms) var(--ease),
+             --span var(--dur,0ms) var(--ease),--fl var(--dur,0ms) var(--ease);
+}
+.carriage{
+  position:absolute;left:-34px;top:9px;width:68px;height:34px;border-radius:12px;
+  background:linear-gradient(180deg,#fff 0%,#f1f5f9 55%,#cfd8e3 100%);
+  box-shadow:0 8px 16px rgba(6,60,150,.35),inset 0 2px 0 #fff,inset 0 -3px 0 rgba(0,0,0,.06);
+}
+.carriage i{
+  position:absolute;top:11px;width:12px;height:12px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#e9eef4,#8d9aab 70%);
+  box-shadow:inset 0 -1px 2px rgba(0,0,0,.25);
+}
+.carriage i:first-child{left:10px}.carriage i:last-child{right:10px}
+.rod{
+  position:absolute;left:-4px;top:43px;width:8px;
+  height:max(0px,calc(var(--hy) - 34px - 43px));
+  background:linear-gradient(90deg,#9aa6b4 0%,#ffffff 45%,#e3e9f0 60%,#8a96a5 100%);
+  border-radius:3px;
+}
+.head{
+  position:absolute;left:-36px;top:calc(var(--hy) - 34px);width:72px;height:34px;border-radius:13px;
+  background:linear-gradient(180deg,#fff 0%,#f0f4f8 55%,#cdd6e1 100%);
+  box-shadow:0 8px 18px rgba(6,60,150,.35),inset 0 2px 0 #fff;
+}
+.head::after{ /* little status light */
+  content:"";position:absolute;left:50%;top:12px;width:9px;height:9px;margin-left:-4.5px;border-radius:50%;
+  background:var(--yellow);box-shadow:0 0 8px var(--yellow);
+}
+.finger{position:absolute;top:calc(var(--hy) - 12px);width:calc(var(--span) / 2);height:12px}
+.finger.l{right:0}
+.finger.r{left:0}
+.arm{
+  position:absolute;inset:0;border-radius:6px;
+  background:linear-gradient(180deg,#fff,#d7dfe8);
+  box-shadow:0 4px 10px rgba(6,60,150,.3);
+}
+.tip{
+  position:absolute;top:2px;width:13px;height:var(--fl);border-radius:7px 7px 8px 8px;
+  background:linear-gradient(90deg,#d2dae4,#fff 45%,#dfe6ee);
+  box-shadow:0 6px 12px rgba(6,60,150,.3);
+  transform-origin:50% 4px;
+  transition:transform .38s var(--spring);
+}
+.finger.l .tip{left:0}
+.finger.r .tip{right:0}
+.tip::after{ /* inward-facing pad */
+  content:"";position:absolute;bottom:4px;width:5px;height:38%;border-radius:3px;background:#b9c4d2;
+}
+.finger.l .tip::after{right:-2px}
+.finger.r .tip::after{left:-2px}
+.claw.open .finger.l .tip{transform:rotate(16deg)}
+.claw.open .finger.r .tip{transform:rotate(-16deg)}
+
+/* ---------- containers ---------- */
+.box{
+  --c:#e5322d; --dk:#a91f1b; --accent:var(--c);
+  --rib:calc(var(--w) * .03);
+  --ribs:repeating-linear-gradient(90deg,
+     rgba(255,255,255,.17) 0 calc(var(--rib) * .16),
+     rgba(255,255,255,0) calc(var(--rib) * .16) calc(var(--rib) * .5),
+     rgba(0,0,0,.17) calc(var(--rib) * .5) calc(var(--rib) * .7),
+     rgba(0,0,0,0) calc(var(--rib) * .7) var(--rib));
+  position:absolute;left:0;top:0;
+  width:var(--w);height:var(--h);
+  transform-style:preserve-3d;
+  transform:
+    translate(calc(var(--x) - var(--w) / 2), calc(var(--y) - var(--h) / 2 + var(--lift)))
+    perspective(1500px)
+    rotateX(var(--rx)) rotateY(var(--ry)) rotateZ(var(--rz));
+  transition:
+    --x var(--dur,0ms) var(--ease), --y var(--dur,0ms) var(--ease),
+    --w var(--dur,0ms) var(--ease), --h var(--dur,0ms) var(--ease), --d var(--dur,0ms) var(--ease),
+    --rx var(--dur,0ms) var(--ease), --ry var(--dur,0ms) var(--ease), --rz var(--dur,0ms) var(--ease),
+    --lift .25s var(--ease);
+  cursor:pointer;
+}
+.box.held{cursor:default}
+.box:not(.held):hover,.box:not(.held):focus-within{--lift:-10px}
+
+.face{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.f-front{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2));transform-style:preserve-3d;backface-visibility:visible}
+.f-back{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d) / 2));
+  background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),var(--ribs),var(--c);border:1px solid var(--dk)}
+.f-end{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d)) / 2);
+  background:
+    linear-gradient(90deg,transparent 48.5%,rgba(0,0,0,.4) 48.5% 51.5%,transparent 51.5%),
+    linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.14)),
+    var(--ribs),var(--dk);
+  border:1px solid rgba(0,0,0,.35)}
+.f-left{transform:rotateY(-90deg) translateZ(calc(var(--w) / 2))}
+.f-right{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
+.f-top,.f-bottom{width:var(--w);height:var(--d);top:calc((var(--h) - var(--d)) / 2);border:1px solid var(--dk)}
+.f-top{transform:rotateX(90deg) translateZ(calc(var(--h) / 2));
+  background:linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,.1)),var(--ribs),var(--c)}
+.f-bottom{transform:rotateX(-90deg) translateZ(calc(var(--h) / 2));
+  background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),var(--c)}
+
+/* interior wall + content */
+.inner{
+  position:absolute;inset:0;transform:translateZ(-3px);
+  border:calc(var(--h) * .04) solid var(--dk);
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 calc(var(--rib) * .2),transparent calc(var(--rib) * .2) var(--rib)),
+    radial-gradient(ellipse at 50% 35%,#17295a 0%,#0b1633 72%);
+  box-shadow:inset 0 0 calc(var(--h) * .22) rgba(0,0,0,.65);
+  display:grid;place-items:center;text-align:center;
+  padding:5% 8%;
+  font-size:calc(var(--h) * .066);
+  color:#dfe7f5;
+}
+.content{opacity:0;transition:opacity .35s ease;max-width:34em}
+.box.open .content{opacity:1;transition:opacity .45s ease .3s}
+.kicker{margin:0 0 .55em;font:800 .62em/1 var(--body);letter-spacing:.2em;color:var(--accent)}
+.content h2{margin:0 0 .4em;font:600 2.05em/1 var(--display);letter-spacing:-.02em;color:#fff;outline:none}
+.content h2 em{font:italic 400 1.12em/1 var(--serif);color:var(--accent);letter-spacing:0}
+.content p{margin:0;font-size:.92em;line-height:1.42;color:#d6e0f1}
+.list{list-style:none;margin:0;padding:0;font-size:.9em;line-height:1.35;text-align:left;display:inline-grid;gap:.38em}
+.list b{color:#fff;font-weight:800}
+.list span{color:#aebbd3}
+.list .n{color:var(--accent);font-weight:800;margin-right:.35em}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:.42em;margin:0;padding:0;list-style:none}
+.chips li{font:700 .8em/1 var(--body);padding:.5em .95em;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.07);color:#fff}
+.mail{
+  display:inline-block;margin-top:.85em;padding:.62em 1.15em;border-radius:999px;
+  background:var(--c);color:#fff;text-decoration:none;font:800 .82em/1 var(--body);letter-spacing:.01em;
+  box-shadow:0 .3em .9em rgba(0,0,0,.35);
+}
+.mail:hover{filter:brightness(1.12)}
+.mail:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+/* doors */
+.door{position:absolute;top:0;width:calc(var(--w) / 2);height:100%;transform-style:preserve-3d;
+  transition:transform .45s var(--ease)}
+.door.l{left:0;transform-origin:0 50%}
+.door.r{right:0;transform-origin:100% 50%}
+.box.open .door{transition:transform .75s cubic-bezier(.3,1.35,.5,1)}
+.box.open .door.l{transform:rotateY(-122deg)}
+.box.open .door.r{transform:rotateY(122deg)}
+.door .out,.door .in{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.door .out{
+  overflow:hidden;
+  background:
+    linear-gradient(90deg,transparent 27%,rgba(0,0,0,.22) 27% 29.5%,transparent 29.5% 70.5%,rgba(0,0,0,.22) 70.5% 73%,transparent 73%),
+    linear-gradient(180deg,rgba(255,255,255,.1),rgba(0,0,0,.1)),
+    var(--ribs),var(--c);
+  border:1px solid var(--dk);
+}
+.door.l .out{border-right:calc(var(--w) * .006 + 1px) solid var(--dk)}
+.door.r .out{border-left:calc(var(--w) * .006 + 1px) solid var(--dk)}
+.door .in{transform:rotateY(180deg);
+  background:linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),var(--ribs),var(--dk);border:1px solid rgba(0,0,0,.4)}
+.lbl{
+  position:absolute;top:calc(var(--h) * .11);left:calc(var(--w) * .065);
+  margin:0;white-space:nowrap;pointer-events:none;
+  font:700 calc(var(--h) * var(--lk,.28))/.84 var(--display);letter-spacing:-.01em;
+  text-transform:uppercase;color:#fff;
+  text-shadow:0 1px 0 rgba(0,0,0,.12);
+}
+.door.r .lbl{left:calc(var(--w) * .065 - var(--w) / 2)}
+.tag{
+  position:absolute;right:calc(var(--w) * .035);bottom:calc(var(--h) * .07);
+  font:800 calc(var(--h) * .075)/1 var(--body);letter-spacing:.2em;color:rgba(255,255,255,.9);
+}
+.hit{
+  position:absolute;inset:0;transform:translateZ(2px);
+  background:transparent;border:0;padding:0;margin:0;cursor:pointer;border-radius:2px;
+}
+.hit:focus-visible{outline:3px solid var(--yellow);outline-offset:calc(var(--h) * -.06)}
+.box.open .hit{pointer-events:none}
+
+/* ---------- phones ---------- */
+@media (max-width:700px){
+  :root{--pad:14px}
+  .nav{height:auto;padding:10px var(--pad) 6px;grid-template-columns:1fr auto;row-gap:6px}
+  .logo{width:92px}
+  .nav > nav{grid-column:1 / -1;grid-row:2}
+  .links{justify-content:center;gap:0}
+  .links button{padding:9px 12px}
+  .talk{grid-column:2;grid-row:1;font-size:15px;padding:9px 14px}
+  .stage{height:calc(100vh - 104px);height:calc(100svh - 104px);min-height:600px}
+  .depot,.hint{display:none}
+  .box{--lk:.25}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  .box,.trolley,.door,.box.open .door,.tip,.content,.box.open .content,.links button,.talk{transition:none !important}
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="logo" href="#" aria-label="Zoheb, home">
+    <!-- Bubbly logo: drawn black-on-white, shown white on blue via invert + screen -->
+    <svg viewBox="0 0 230 84" role="img" aria-hidden="true">
+      <rect width="230" height="84" fill="#fff"/>
+      <g font-family="Fredoka, 'Arial Rounded MT Bold', 'Varela Round', sans-serif" font-weight="700" font-size="60">
+        <text x="10" y="64" fill="#000" stroke="#000" stroke-width="9" stroke-linejoin="round" paint-order="stroke">zoheb</text>
+      </g>
+      <circle cx="198" cy="18" r="9" fill="none" stroke="#000" stroke-width="4"/>
+      <circle cx="216" cy="34" r="5" fill="none" stroke="#000" stroke-width="3.5"/>
+      <circle cx="214" cy="9" r="3" fill="#000"/>
+    </svg>
+  </a>
+  <nav aria-label="Sections">
+    <ul class="links">
+      <li><button type="button" data-go="1">Work</button></li>
+      <li><button type="button" data-go="2">About</button></li>
+      <li><button type="button" data-go="3">Process</button></li>
+      <li><button type="button" data-go="6">Contact</button></li>
+    </ul>
+  </nav>
+  <a class="talk" href="mailto:zohebahmed893@gmail.com" title="zohebahmed893@gmail.com">Let's Talk ↗</a>
+</header>
+
+<main class="stage" id="stage">
+  <h1 class="sr">Zoheb Ahmed · Portfolio</h1>
+  <p class="backword" aria-hidden="true">PORTFOLIO</p>
+  <p class="depot" aria-hidden="true">ZOHEB'S DEPOT · <b>7 CONTAINERS</b> · 2026</p>
+  <div class="floor" aria-hidden="true"></div>
+  <div id="pile"></div>
+  <div class="claw open" id="claw" aria-hidden="true">
+    <div class="rail"></div>
+    <div class="trolley" id="trolley">
+      <div class="carriage"><i></i><i></i></div>
+      <div class="rod"></div>
+      <div class="finger l"><div class="arm"></div><div class="tip"></div></div>
+      <div class="finger r"><div class="arm"></div><div class="tip"></div></div>
+      <div class="head"></div>
     </div>
+  </div>
+  <p class="hint" aria-hidden="true">PICK A CONTAINER ↓</p>
+  <p class="sr" id="live" aria-live="polite"></p>
+</main>
 
-    <div class="main">
-      <h4>Hi, I Am <span>Zoheb Ahmed</span> 👋</h4>
-      <p class="title">Creative FullStack Web Developer</p>
-      <p class="subtitle">
-        I'm Learning to Design And Code Beautiful and Simple Things And I Love
-        What I'm Doing!
-      </p>
-      <!-- <img src="assets/logo.png" /> -->
-    </div>
+<script>
+(() => {
+  /* ---------------- content ---------------- */
+  const EMAIL = 'zohebahmed893@gmail.com';
+  const BOXES = [
+    { c:'#e5322d', dk:'#a91f1b', l:['Port','folio'], tag:'ZOHEB', name:'Portfolio',
+      html:`<p class="kicker">01 / HELLO</p>
+        <h2>Hi, I'm <em>Zoheb.</em></h2>
+        <p>An MBA marketing graduate with a curious mind, turning customer insight into brands people remember. Every container in the pile holds a piece of my work.</p>` },
+    { c:'#f26a1f', dk:'#b84a10', l:['The','work'], tag:'02', name:'The work',
+      /* EDIT: replace these three entries with Zoheb's real projects */
+      html:`<p class="kicker">02 / SELECTED WORK</p>
+        <h2>The <em>work.</em></h2>
+        <ul class="list">
+          <li><b>Brand repositioning plan</b> <span>· a strategy case study from my MBA</span></li>
+          <li><b>Go-to-market playbook</b> <span>· taking a product to a new audience</span></li>
+          <li><b>Campaign audit</b> <span>· what's working, what to cut, what to test</span></li>
+        </ul>` },
+    { c:'#1d55d8', dk:'#123a9c', accent:'#5b8cff', l:['About','me'], tag:'03', name:'About me',
+      html:`<p class="kicker">03 / ABOUT ME</p>
+        <h2>A little <em>about</em> me.</h2>
+        <p>I like the meeting point of data and storytelling: understand the audience, find the angle, then make it land. My MBA in marketing gave me the frameworks; curiosity does the rest.</p>` },
+    { c:'#f6b919', dk:'#c08a0a', l:['Pro','cess'], tag:'04', name:'Process',
+      html:`<p class="kicker">04 / PROCESS</p>
+        <h2>How I <em>work.</em></h2>
+        <ul class="list">
+          <li><span class="n">01</span><b>Listen</b> <span>· start with the customer and the brief</span></li>
+          <li><span class="n">02</span><b>Plan</b> <span>· research, positioning and the right channels</span></li>
+          <li><span class="n">03</span><b>Launch &amp; learn</b> <span>· ship it, read the numbers, improve</span></li>
+        </ul>` },
+    { c:'#97a1ad', dk:'#6c7682', accent:'#b9c2cd', l:['Tool','kit'], tag:'05', name:'Toolkit',
+      /* EDIT: swap in the tools Zoheb actually uses */
+      html:`<p class="kicker">05 / TOOLKIT</p>
+        <h2>What's in the <em>box.</em></h2>
+        <ul class="chips"><li>Google Analytics</li><li>Meta Ads</li><li>SEO</li><li>Canva</li><li>Excel</li><li>Claude</li></ul>` },
+    { c:'#e5322d', dk:'#a91f1b', accent:'#ff5a54', l:['What','I do'], tag:'06', name:'What I do',
+      html:`<p class="kicker">06 / WHAT I DO</p>
+        <h2>What I <em>do.</em></h2>
+        <ul class="chips"><li>Brand strategy</li><li>Digital marketing</li><li>Market research</li><li>Content &amp; campaigns</li></ul>` },
+    { c:'#2546b8', dk:'#172f80', accent:'#6f8cff', l:['Say','hello'], tag:'07', name:'Say hello',
+      html:`<p class="kicker">07 / SAY HELLO</p>
+        <h2>Got an <em>idea?</em></h2>
+        <p>Have a project in mind, a half-formed idea, or just want to say hi?</p>
+        <a class="mail" href="mailto:${EMAIL}">${EMAIL} ↗</a>` },
+  ];
+  // x, y (fractions of stage), rotateX, rotateY, rotateZ
+  const PILE_D = [[.48,.66,-14,-24,6],[.13,.86,-16,28,16],[.36,.90,-12,-20,-10],[.60,.88,-14,24,12],[.86,.86,-16,-30,-14],[.25,.68,-14,30,-12],[.73,.68,-14,-26,16]];
+  const PILE_M = [[.50,.64,-14,-22,5],[.17,.91,-16,26,12],[.50,.93,-12,-18,-8],[.84,.90,-14,22,10],[.20,.77,-16,-26,-10],[.52,.79,-14,26,-9],[.82,.76,-14,-24,12]];
 
-    <div class="guarantee">
-      <div class="item">
-        <div class="icon">
-          <i class="bx bx-check-shield"></i>
-        </div>
+  /* ---------------- refs + helpers ---------------- */
+  const stage = document.getElementById('stage');
+  const pileEl = document.getElementById('pile');
+  const claw = document.getElementById('claw');
+  const trolley = document.getElementById('trolley');
+  const live = document.getElementById('live');
+  const navBtns = [...document.querySelectorAll('[data-go]')];
+  const RM = matchMedia('(prefers-reduced-motion: reduce)');
+  const MOB = matchMedia('(max-width: 700px)');
+  const px = v => v.toFixed(2) + 'px';
+  const frame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const T = ms => RM.matches ? frame() : new Promise(r => setTimeout(r, ms));
+  const D = ms => RM.matches ? 0 : ms;
 
-        <div class="info">
-          <h3>Hackerrank</h3>
-        </div>
-        <a
-          style="text-decoration: none"
-          href="https://www.hackerrank.com/profile/zohebahmed893"
-          target="_blank"
-          ><i class="bx bx-chevron-right bx-lg"></i
-        ></a>
-      </div>
-      <div class="item">
-        <div class="icon">
-          <i class="bx bx-check-circle"></i>
-        </div>
-        <div class="info">
-          <h3>GeeksForGeeks</h3>
-        </div>
-        <a
-          style="text-decoration: none"
-          href="https://auth.geeksforgeeks.org/user/zoheb12pdnj"
-          target="_blank"
-        >
-          <i class="bx bx-chevron-right bx-lg"></i>
-        </a>
-      </div>
-      <div class="item">
-        <div class="icon">
-          <i class="bx bx-badge-check"></i>
-        </div>
-        <div class="info">
-          <h3>Leetcode</h3>
-        </div>
-        <a
-          style="text-decoration: none"
-          href="https://leetcode.com/zoheb08/"
-          target="_blank"
-        >
-          <i class="bx bx-chevron-right bx-lg"></i>
-        </a>
-      </div>
-      <div class="item">
-        <div class="icon">
-          <i class="bx bx-check-shield"></i>
-        </div>
+  /* ---------------- build containers ---------------- */
+  const els = BOXES.map((b, i) => {
+    const el = document.createElement('div');
+    el.className = 'box';
+    el.style.setProperty('--c', b.c);
+    el.style.setProperty('--dk', b.dk);
+    if (b.accent) el.style.setProperty('--accent', b.accent);
+    const lbl = `<p class="lbl">${b.l[0]}<br>${b.l[1]}</p>`;
+    const hid = `box-h-${i}`;
+    el.innerHTML = `
+      <div class="face f-back"></div>
+      <div class="face f-end f-left"></div>
+      <div class="face f-end f-right"></div>
+      <div class="face f-top"></div>
+      <div class="face f-bottom"></div>
+      <div class="face f-front">
+        <section class="inner" inert aria-labelledby="${hid}"><div class="content">${b.html}</div></section>
+        <div class="door l" aria-hidden="true"><div class="out">${lbl}</div><div class="in"></div></div>
+        <div class="door r" aria-hidden="true"><div class="out">${lbl}<span class="tag">${b.tag}</span></div><div class="in"></div></div>
+        <button class="hit" type="button" aria-expanded="false" aria-label="Open the ${b.name} container"></button>
+      </div>`;
+    const h2 = el.querySelector('h2');
+    h2.id = hid; h2.tabIndex = -1;
+    el.addEventListener('click', () => { if (held !== i || !isOpen) request(i, true); });
+    pileEl.appendChild(el);
+    return el;
+  });
 
-        <div class="info">
-          <h3>HackerEarth</h3>
-        </div>
-        <a
-          style="text-decoration: none"
-          href="https://www.hackerearth.com/@zoheb15"
-          target="_blank"
-          ><i class="bx bx-chevron-right bx-lg"></i
-        ></a>
-      </div>
-    </div>
+  /* ---------------- geometry ---------------- */
+  let G;
+  function measure() {
+    const sw = stage.clientWidth, sh = stage.clientHeight, mob = MOB.matches;
+    let W, H, Dp, scale;
+    if (mob) { W = Math.min(170, sw * .38); H = W * .6;  Dp = W * .56; scale = 2.4; }
+    else     { W = Math.max(200, Math.min(310, sw * .2)); H = W * .43; Dp = W * .4; scale = 1.95; }
+    const liftTop = 92;
+    scale = Math.min(scale, (sw * .94) / W, (sh * .42) / H);
+    const pile = (mob ? PILE_M : PILE_D).map(([fx, fy, rx, ry, rz]) => ({ x: fx * sw, y: fy * sh, rx, ry, rz }));
+    const minTop = Math.min(...pile.map(p => p.y - H / 2));
+    G = { sw, sh, W, H, Dp, scale, liftTop, pile,
+          safeY: Math.max(liftTop, minTop - H * .9 - 24),
+          lift: { x: sw / 2, w: W * scale, h: H * scale, d: Dp * scale, rx: -7, ry: -11, rz: 0 } };
+    G.lift.y = liftTop + G.lift.h / 2;
+  }
+  function pilePose(i) { const p = G.pile[i]; return { ...p, w: G.W, h: G.H, d: G.Dp }; }
 
-    <h5 class="seprator">Who I Am</h5>
+  function setBox(i, p, ms) {
+    const s = els[i].style;
+    s.setProperty('--dur', D(ms) + 'ms');
+    s.setProperty('--x', px(p.x)); s.setProperty('--y', px(p.y));
+    s.setProperty('--w', px(p.w)); s.setProperty('--h', px(p.h)); s.setProperty('--d', px(p.d));
+    s.setProperty('--rx', p.rx + 'deg'); s.setProperty('--ry', p.ry + 'deg'); s.setProperty('--rz', p.rz + 'deg');
+  }
+  const clawState = { x: 0, hy: 110, span: 260, fl: 60 };
+  function setClaw(p, ms) {
+    Object.assign(clawState, p);
+    const s = trolley.style;
+    s.setProperty('--dur', D(ms) + 'ms');
+    s.setProperty('--cx', px(clawState.x)); s.setProperty('--hy', px(clawState.hy));
+    s.setProperty('--span', px(clawState.span)); s.setProperty('--fl', px(clawState.fl));
+  }
+  const grip = (w, h) => ({ span: w * 1.06, fl: h * .56 });
+  const openFingers = on => claw.classList.toggle('open', on);
+  function zOf(i) { els[i].style.zIndex = held === i ? 700 : 10 + Math.round(G.pile[i].y); }
 
-    <div class="about">
-      <!-- <img src="assets/image.png" /> -->
-      <div class="info" id="Aboutme">
-        <h3>About Me</h3>
-        <p id="p10">
-          Hey there, future tech wizard in the making! 🚀 I'm Zoheb Ahmed, a
-          full-stack development enthusiast currently on a rollercoaster journey
-          called BTech. CSE. in Full Stack Development. If life were a code, you could
-          say I'm constantly debugging my way through it!
-        </p>
-        <p id="p10">
-          Picture this: me, surrounded by mountains of coffee cups, typing away
-          furiously on my keyboard, with a superhero cape made of tangled
-          charging cables. Why? Because I believe in the power of coding to
-          change the world – one bug fix at a time. Ever since I discovered that
-          HTML doesn't stand for "How to Meet Ladies," I've been hooked on the
-          idea of weaving digital wonders. JavaScript? It's like my morning
-          coffee – essential and occasionally confusing until the second cup
-          kicks in.
-        </p>
-        <p id="p10">
-          In a nutshell, I'm Zoheb Ahmed, your friendly neighborhood
-          full-stack explorer, weaving my way through the labyrinth of code and
-          turning caffeine into lines of brilliance. Let's embrace the bugs and
-          debug the adventures of life together! 💻✨
-        </p>
-<!--         <a href="assets/CV.pdf" download="CV.pdf"> -->
-<!--           <button class="hire-btn">Check My CV</button> -->
-        </a>
-      </div>
-    </div>
+  /* ---------------- doors ---------------- */
+  function setOpen(i, on) {
+    const el = els[i];
+    el.classList.toggle('open', on);
+    el.classList.toggle('held', held === i);
+    el.querySelector('.inner').inert = !on;
+    const hit = el.querySelector('.hit');
+    hit.setAttribute('aria-expanded', on);
+    hit.tabIndex = on ? -1 : 0;
+    navBtns.forEach(b => b.setAttribute('aria-current', on && +b.dataset.go === i ? 'true' : 'false'));
+  }
 
-    <h5 class="seprator">My Skills</h5>
+  /* ---------------- pick sequence ---------------- */
+  let held = null, isOpen = false, busy = false, pending = null, pendingFocus = false, dirty = false;
+  function request(i, focus) { pending = i; pendingFocus = !!focus; if (!busy) pump(); }
+  async function pump() {
+    busy = true;
+    while (pending !== null) { const t = pending, f = pendingFocus; pending = null; await pick(t, f); }
+    busy = false;
+    if (dirty) { dirty = false; relayout(); }
+  }
+  async function pick(i, focus) {
+    if (held === i) {
+      if (!isOpen) { setOpen(i, true); isOpen = true; await T(750); }
+      if (focus) els[i].querySelector('h2').focus({ preventScroll: true });
+      return;
+    }
+    // 1. put the current box back
+    if (held !== null) {
+      const h = held;
+      setOpen(h, false); isOpen = false;
+      await T(450);
+      const p = pilePose(h);
+      setClaw({ x: p.x, hy: p.y - G.H / 2, ...grip(G.W, G.H) }, 850);
+      setBox(h, p, 850);
+      await T(850);
+      openFingers(true);
+      held = null; els[h].classList.remove('held'); zOf(h);
+      await T(240);
+    }
+    const p = pilePose(i);
+    // 2. travel
+    openFingers(true);
+    setClaw({ x: p.x, hy: G.safeY, ...grip(G.W, G.H) }, 750);
+    await T(750);
+    // 3. drop
+    setClaw({ hy: p.y - G.H / 2 }, 560);
+    await T(560);
+    // 4. grip
+    openFingers(false);
+    await T(240);
+    held = i; zOf(i); els[i].classList.add('held');
+    // 5. lift + grow + straighten
+    const L = G.lift;
+    setClaw({ x: L.x, hy: G.liftTop, ...grip(L.w, L.h) }, 950);
+    setBox(i, L, 950);
+    await T(950);
+    // 6. doors
+    setOpen(i, true); isOpen = true;
+    live.textContent = BOXES[i].name + ' container open';
+    await T(750);
+    // 7. focus
+    if (focus) els[i].querySelector('h2').focus({ preventScroll: true });
+  }
 
-    <div class="skills">
-      <div class="left">
-        <div class="info">
-          <h3>What My Programming Skills Include?</h3>
-          <p>
-            I'm learning to develop simple, intuitive and responsive user interface that helps
-            users get things done with less efforts and time with these
-            technologies.
-          </p>
-        </div>
-        <a href="mailto:zohebahmed893@gmail.com">
-          <button class="hire-btn">Drop me a Mail</button>
-        </a>
-      </div>
+  /* ---------------- layout / resize ---------------- */
+  function relayout() {
+    measure();
+    els.forEach((_, i) => { if (i !== held) { setBox(i, pilePose(i), 0); } zOf(i); });
+    if (held !== null) {
+      setBox(held, G.lift, 0);
+      setClaw({ x: G.lift.x, hy: G.liftTop, ...grip(G.lift.w, G.lift.h) }, 0);
+    } else {
+      setClaw({ x: G.sw / 2, hy: G.safeY, ...grip(G.W, G.H) }, 0);
+    }
+  }
+  let rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { if (busy) dirty = true; else relayout(); }, 120);
+  });
 
-      <div class="right" id="myskills">
-        <div class="item">
-          <i class="bx bxl-html5"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-css3"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-javascript"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-python"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-c-plus-plus"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-github"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-java"></i>
-        </div>
-        <div class="item">
-          <i class="bx bx-spreadsheet"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxs-data"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-spring-boot"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-sass"></i>
-        </div>
-        <div class="item">
-          <i class="bx bxl-react"></i>
-        </div>
-      </div>
-    </div>
+  navBtns.forEach(b => b.addEventListener('click', () => request(+b.dataset.go, true)));
+  document.querySelector('.logo').addEventListener('click', e => { e.preventDefault(); request(0, true); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') request(0, true); });
 
-    <footer>
-      <div class="start">
-        <h3>Wanna Discuss something</h3>
-        <p>
-          Interested in working together? We should queue up a chat. The coffee
-          is on me.
-        </p>
-        <a href="mailto:zohebahmed893@gmail.com">
-          <button>Let's do this</button>
-        </a>
-      </div>
-
-      <div class="cols">
-        <div class="about-col">
-          <h3>Zoheb Ahmed</h3>
-          <p>Creative FullStack Developer</p>
-        </div>
-
-        <div class="links-col">
-          <h4>Useful Links</h4>
-          <a href="#mainpage">Home</a>
-          <a href="#Aboutme">About</a>
-          <a href="#myskills">Skills</a>
-          <a href="#contacts">Contact</a>
-        </div>
-
-        <div class="links-col" id="contacts">
-          <h4>Social Media</h4>
-          <a href="https://www.instagram.com/zoheb_ahmed08/" target="_blank"
-            >Instagram</a
-          >
-          <a href="https://www.linkedin.com/in/zoheb8/" target="_blank"
-            >Linkedin</a
-          >
-          <a href="mailto:zohebahmed893@gmail.com">E-Mail</a>
-
-          <a href="https://github.com/zohebahmed08" target="_blank">Github</a>
-        </div>
-
-        <div class="news-col">
-          <h4>Drop me a text I'll contact you</h4>
-          <p>Too shy to talk drop me a text and I'll contact you on my own</p>
-
-          <form
-            action="https://script.google.com/macros/s/AKfycbxWwxwv7V7SoZVaCznNGEfwbyjRddPHOiikPQkr2YNC2Qa_MVHAPAR6P3A7deTyYdiH/exec"
-            method="post"
-            id="my-form"
-          >
-            <input
-              name="Text"
-              type="text"
-              placeholder="Drop your text and contact info"
-              required
-            />
-            <button type="submit"><i class="bx bxl-telegram"></i></button>
-          </form>
-        </div>
-      </div>
-    </footer>
-  </body>
+  /* ---------------- start ---------------- */
+  measure();
+  els.forEach((_, i) => { setBox(i, pilePose(i), 0); zOf(i); });
+  setClaw({ x: G.sw / 2, hy: G.safeY, ...grip(G.W, G.H) }, 0);
+  setTimeout(() => request(0, false), 500);
+})();
+</script>
+</body>
 </html>
