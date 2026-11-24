@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zoheb Ahmed · The Portfolio Depot</title>
 <meta name="description" content="Zoheb Ahmed, MBA marketing graduate. A pile of shipping containers, each holding a piece of the portfolio.">
+<meta property="og:title" content="Zoheb Ahmed · The Portfolio Depot">
+<meta property="og:description" content="MBA marketing graduate. Click a container, the claw does the rest.">
+<meta property="og:url" content="https://zohebahmed08.github.io/">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231f93f2'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Arial Rounded MT Bold,Arial,sans-serif' font-weight='700' font-size='40' fill='%23fff'%3Ez%3C/text%3E%3Ccircle cx='50' cy='14' r='5' fill='none' stroke='%23ffd23f' stroke-width='3'/%3E%3C/svg%3E">
 <!-- Fontshare (loads when self-hosted; blocked on hosts that only allow Google Fonts) -->
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=cabinet-grotesk@400,500,700,800&display=swap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -202,7 +207,8 @@ button{font:inherit;color:inherit}
 .box:not(.held):hover,.box:not(.held):focus-within{--lift:-10px}
 
 .face{position:absolute;left:0;top:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.f-front{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2));transform-style:preserve-3d;backface-visibility:visible}
+.f-front{width:var(--w);height:var(--h);transform:translateZ(calc(var(--d) / 2));transform-style:preserve-3d;backface-visibility:visible;pointer-events:none}
+.f-front > *{pointer-events:auto}
 .f-back{width:var(--w);height:var(--h);transform:rotateY(180deg) translateZ(calc(var(--d) / 2));
   background:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22)),var(--ribs),var(--c);border:1px solid var(--dk)}
 .f-end{width:var(--d);height:var(--h);left:calc((var(--w) - var(--d)) / 2);
@@ -250,6 +256,16 @@ button{font:inherit;color:inherit}
   box-shadow:0 .3em .9em rgba(0,0,0,.35);
 }
 .mail:hover{filter:brightness(1.12)}
+.addr{margin:.5em 0 0 !important;font-size:.78em !important;color:#aebbd3 !important;user-select:all}
+.socials{margin:.45em 0 0 !important;display:flex;gap:1.1em;justify-content:center;font-size:.8em !important}
+.socials a{color:#fff;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35)}
+.socials a:hover{border-color:#fff}
+.list.work a{display:block;color:inherit;text-decoration:none;padding:.18em .5em;margin:0 -.5em;border-radius:.4em;transition:background .2s}
+.list.work a:hover{background:rgba(255,255,255,.08)}
+.list.work a:focus-visible{outline:2px solid var(--yellow)}
+.list.work i{font-style:normal;color:var(--accent);font-weight:800;margin-left:.2em}
+.note{margin-top:.55em !important;font-size:.68em !important;letter-spacing:.14em;text-transform:uppercase;color:#8fa0bf !important;font-weight:700}
+.socials a:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
 .mail:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
 
 /* doors */
@@ -304,6 +320,10 @@ button{font:inherit;color:inherit}
   .stage{height:calc(100vh - 104px);height:calc(100svh - 104px);min-height:600px}
   .depot,.hint{display:none}
   .box{--lk:.25}
+  .inner{padding:3% 6%}
+  .list.work span{display:none}
+  .content .addr{display:none}
+  .content h2{margin-bottom:.3em}
 }
 
 /* ---------- reduced motion ---------- */
@@ -369,18 +389,18 @@ button{font:inherit;color:inherit}
         <h2>Hi, I'm <em>Zoheb.</em></h2>
         <p>An MBA marketing graduate with a curious mind, turning customer insight into brands people remember. Every container in the pile holds a piece of my work.</p>` },
     { c:'#f26a1f', dk:'#b84a10', l:['The','work'], tag:'02', name:'The work',
-      /* EDIT: replace these three entries with Zoheb's real projects */
       html:`<p class="kicker">02 / SELECTED WORK</p>
         <h2>The <em>work.</em></h2>
-        <ul class="list">
-          <li><b>Brand repositioning plan</b> <span>· a strategy case study from my MBA</span></li>
-          <li><b>Go-to-market playbook</b> <span>· taking a product to a new audience</span></li>
-          <li><b>Campaign audit</b> <span>· what's working, what to cut, what to test</span></li>
-        </ul>` },
+        <ul class="list work">
+          <li><a href="work/pav-bhaji-repositioning.html"><b>Brand repositioning plan</b> <span>· a pav bhaji chain levels up</span> <i>→</i></a></li>
+          <li><a href="work/filter-coffee-gtm.html"><b>Go-to-market playbook</b> <span>· launching a filter-coffee kit</span> <i>→</i></a></li>
+          <li><a href="work/cafe-instagram-audit.html"><b>Campaign audit</b> <span>· a café's Instagram, fixed</span> <i>→</i></a></li>
+        </ul>
+        <p class="note">Concept case studies · tap one to read</p>` },
     { c:'#1d55d8', dk:'#123a9c', accent:'#5b8cff', l:['About','me'], tag:'03', name:'About me',
       html:`<p class="kicker">03 / ABOUT ME</p>
         <h2>A little <em>about</em> me.</h2>
-        <p>I like the meeting point of data and storytelling: understand the audience, find the angle, then make it land. My MBA in marketing gave me the frameworks; curiosity does the rest.</p>` },
+        <p>BTech CSE turned MBA marketer: I used to debug code, now I debug funnels. I run on coffee (no strong opinions before cup two) and pav bhaji (extra butter, zero regrets). Ask me why a midnight pav bhaji queue beats most marketing textbooks.</p>` },
     { c:'#f6b919', dk:'#c08a0a', l:['Pro','cess'], tag:'04', name:'Process',
       html:`<p class="kicker">04 / PROCESS</p>
         <h2>How I <em>work.</em></h2>
@@ -390,24 +410,26 @@ button{font:inherit;color:inherit}
           <li><span class="n">03</span><b>Launch &amp; learn</b> <span>· ship it, read the numbers, improve</span></li>
         </ul>` },
     { c:'#97a1ad', dk:'#6c7682', accent:'#b9c2cd', l:['Tool','kit'], tag:'05', name:'Toolkit',
-      /* EDIT: swap in the tools Zoheb actually uses */
       html:`<p class="kicker">05 / TOOLKIT</p>
         <h2>What's in the <em>box.</em></h2>
-        <ul class="chips"><li>Google Analytics</li><li>Meta Ads</li><li>SEO</li><li>Canva</li><li>Excel</li><li>Claude</li></ul>` },
+        <ul class="chips"><li>Google Analytics</li><li>Meta Ads Manager</li><li>SEO</li><li>Canva</li><li>Excel</li><li>SQL</li></ul>` },
     { c:'#e5322d', dk:'#a91f1b', accent:'#ff5a54', l:['What','I do'], tag:'06', name:'What I do',
       html:`<p class="kicker">06 / WHAT I DO</p>
         <h2>What I <em>do.</em></h2>
-        <ul class="chips"><li>Brand strategy</li><li>Digital marketing</li><li>Market research</li><li>Content &amp; campaigns</li></ul>` },
+        <ul class="chips"><li>Brand strategy</li><li>Performance marketing</li><li>Marketing analytics</li><li>Content &amp; SEO</li></ul>` },
     { c:'#2546b8', dk:'#172f80', accent:'#6f8cff', l:['Say','hello'], tag:'07', name:'Say hello',
       html:`<p class="kicker">07 / SAY HELLO</p>
         <h2>Got an <em>idea?</em></h2>
         <p>Have a project in mind, a half-formed idea, or just want to say hi?</p>
-        <a class="mail" href="mailto:${EMAIL}">${EMAIL} ↗</a>` },
+        <a class="mail" href="mailto:${EMAIL}?subject=Hello%20Zoheb">✉ Email me</a>
+        <p class="addr">${EMAIL}</p>
+        <p class="socials"><a href="https://www.linkedin.com/in/zoheb8/" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/zohebahmed08" target="_blank" rel="noopener">GitHub ↗</a></p>` },
   ];
   // x, y (fractions of stage), rotateX, rotateY, rotateZ
   const PILE_D = [[.48,.66,-14,-24,6],[.13,.86,-16,28,16],[.36,.90,-12,-20,-10],[.60,.88,-14,24,12],[.86,.86,-16,-30,-14],[.25,.68,-14,30,-12],[.73,.68,-14,-26,16]];
   const PILE_M = [[.50,.64,-14,-22,5],[.17,.91,-16,26,12],[.50,.93,-12,-18,-8],[.84,.90,-14,22,10],[.20,.77,-16,-26,-10],[.52,.79,-14,26,-9],[.82,.76,-14,-24,12]];
 
+  const KEYS = ['', 'work', 'about', 'process', 'toolkit', 'services', 'contact'];
   /* ---------------- refs + helpers ---------------- */
   const stage = document.getElementById('stage');
   const pileEl = document.getElementById('pile');
@@ -547,6 +569,7 @@ button{font:inherit;color:inherit}
     // 6. doors
     setOpen(i, true); isOpen = true;
     live.textContent = BOXES[i].name + ' container open';
+    try { history.replaceState(null, '', KEYS[i] ? '#' + KEYS[i] : location.pathname); } catch (e) {}
     await T(750);
     // 7. focus
     if (focus) els[i].querySelector('h2').focus({ preventScroll: true });
@@ -577,7 +600,9 @@ button{font:inherit;color:inherit}
   measure();
   els.forEach((_, i) => { setBox(i, pilePose(i), 0); zOf(i); });
   setClaw({ x: G.sw / 2, hy: G.safeY, ...grip(G.W, G.H) }, 0);
-  setTimeout(() => request(0, false), 500);
+  const fromHash = KEYS.indexOf(location.hash.slice(1));
+  setTimeout(() => request(fromHash > 0 ? fromHash : 0, false), 500);
+  addEventListener('hashchange', () => { const k = KEYS.indexOf(location.hash.slice(1)); if (k >= 0) request(k, false); });
 })();
 </script>
 </body>
